@@ -1,0 +1,277 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 
+## Layout
+
+The designs were created to the following widths:
+
+- Mobile: 375px
+- Desktop: 1440px
+
+## Colors
+
+### Primary
+
+- Tomato: hsl(4, 100%, 67%)
+
+### Neutral
+
+- Dark Slate Grey: hsl(234, 29%, 20%)
+- Charcoal Grey: hsl(235, 18%, 26%)
+- Grey: hsl(231, 7%, 60%)
+- White: hsl(0, 0%, 100%)
+
+## Typography
+
+### Body Copy
+
+- Font size (paragraph): 16px
+
+### Font
+
+- Family: [Roboto](https://fonts.google.com/specimen/Roboto)
+- Weights: 400, 700 */
+
+:root {
+  /* colors */
+  --Tomato: hsl(4, 100%, 67%);
+  --Dark-Slate-Grey: hsl(234, 29%, 20%);
+  --Charcoal-Grey: hsl(235, 18%, 26%);
+  --Grey: hsl(231, 7%, 60%);
+  --White: hsl(0, 0%, 100%);
+  /* Typography */
+  --paragraph: 16px;
+  --font-family: "Roboto", sans-serif;
+  --font-weight: 400;
+  --font-weight-bold: 700;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--Dark-Slate-Grey);
+  background-color: var(--Dark-Slate-Grey);
+  overflow: hidden !important;
+}
+
+.updated-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--White);
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .updated-form {
+    flex-direction: row;
+    width: fit-content;
+    height: 85vh;
+
+    margin: 5vh auto;
+    border-radius: 10px;
+
+    overflow: hidden;
+  }
+  .updated-form .svg {
+    order: 2;
+  }
+  .updated-form .svg .mobile {
+    display: none;
+  }
+  .updated-form .svg .pc {
+    display: block !important;
+  }
+
+  .updated-form .text {
+    order: 1;
+
+    height: 100%;
+    padding: 100px 50px !important;
+  }
+  .updated-form .text h1 {
+    font-size: 3em;
+    font-weight: var(--font-weight-bold);
+  }
+  .updated-form .text label {
+    font-size: 1em;
+  }
+
+  .updated-form .text input,
+  .updated-form .text button {
+    height: 60px;
+  }
+  .success-message {
+    width: 300px !important;
+    height: 400px !important;
+    border-radius: 30px;
+    z-index: 1000;
+  }
+  body.show::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+
+    background-color: var(--Dark-Slate-Grey);
+    z-index: 1;
+  }
+  .success-message .text {
+    margin-top: 0 !important;
+  }
+}
+
+.updated-form.hidden {
+  display: none;
+}
+
+.updated-form .svg {
+  display: grid;
+  place-items: center;
+}
+
+.updated-form .svg .pc {
+  display: none;
+}
+
+.updated-form .text {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 20px;
+  gap: 20px;
+}
+
+.text h1 {
+  font-weight: var(--font-weight-bold);
+}
+
+.text ul {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  list-style: none;
+}
+
+.text ul li {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  gap: 10px;
+}
+
+.text ul li span {
+  padding: 0 10px;
+}
+
+.text p,
+.text ul li span {
+  font-size: var(--paragraph);
+}
+
+.text label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text label span {
+  font-size: 12px;
+  font-weight: var(--font-weight-bold);
+}
+
+.text label span:nth-child(2) {
+  opacity: 0;
+  transition: 0.3s linear;
+}
+
+.text label span.show:nth-child(2) {
+  opacity: 1;
+  color: var(--Tomato);
+}
+
+.text input {
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 7px;
+  border: 1px solid var(--Grey);
+  outline: none;
+}
+
+.text input.show {
+  border: 1px solid var(--Tomato) !important;
+  background-color: hsl(4deg 100% 67% / 31%);
+}
+
+.text input.show::placeholder {
+  color: var(--Tomato);
+}
+
+.text button,
+.success-message button {
+  height: 40px;
+  color: var(--White);
+  background-color: var(--Dark-Slate-Grey);
+  border-radius: 7px;
+  transition: 0.2s linear;
+}
+
+.text button:hover,
+.success-message button:hover {
+  background-color: var(--Tomato);
+  border: none;
+}
+
+.success-message {
+  padding: 30px 20px;
+
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 180%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--White);
+  opacity: 0;
+  transition: 0.5s linear;
+}
+
+.success-message.show {
+  opacity: 1;
+  top: 50% !important;
+}
+
+.success-message .text {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.success-message .text svg {
+  border: 1px solid red;
+  border-radius: 50%;
+  font-size: 2em;
+  color: var(--Tomato);
+}
+
+.success-message .text p .email {
+  font-weight: var(--font-weight);
+}
+.attribution {
+  padding: 10px;
+  color: var(--White);
+}
+
+.attribution a {
+  color: var(--Tomato);
+}
